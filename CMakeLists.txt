@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.31.0)
 
 # Default to using clang when no compiler is explicitly specified. 
-if (UNIX)
-  if (NOT DEFINED CMAKE_C_COMPILER)
+if(UNIX)
+  if(NOT DEFINED CMAKE_C_COMPILER)
     find_program(CMAKE_C_COMPILER NAMES clang)
   endif()
-  if (NOT DEFINED CMAKE_CXX_COMPILER)
+  if(NOT DEFINED CMAKE_CXX_COMPILER)
     find_program(CMAKE_CXX_COMPILER NAMES clang++)
   endif()
 endif(UNIX)
@@ -13,6 +13,11 @@ endif(UNIX)
 # Revert to the old behavior for resolving the assembler in Windows builds.
 if(POLICY CMP0194)
   cmake_policy(SET CMP0194 OLD)
+endif()
+
+# https://github.com/llvm/llvm-project/issues/228948
+if(POLICY CMP0219)
+  set(CMAKE_POLICY_DEFAULT_CMP0219 OLD)
 endif()
 
 project(Pasture C CXX ASM)
