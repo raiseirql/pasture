@@ -23,7 +23,7 @@ endif()
 project(Pasture C CXX ASM)
 
 set(CMAKE_C_STANDARD 11)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 set(PASTURE_LLVM_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/third_party/llvm-project")
 set(PASTURE_LLVM_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}/llvm-project")
@@ -45,4 +45,4 @@ include_directories("${PASTURE_LLVM_BINARY_DIR}/tools/mlir/include")
 
 add_llvm_executable(test test.cpp)
 
-target_link_libraries(test PRIVATE LLVMSupport)
+target_link_libraries(test PRIVATE LLVMSupport MLIRLLVMDialect MLIRIR MLIRPass MLIRSupport)
